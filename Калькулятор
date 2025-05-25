@@ -1,0 +1,70 @@
+#include <iostream>
+#include <limits>
+
+using namespace std;
+
+int main() {
+    double num1, num2;
+    char operation;
+    bool continueCalculation = true;
+
+    cout << "Простой калькулятор на C++" << endl;
+    cout << "Доступные операции: +, -, *, /" << endl << endl;
+
+    while (continueCalculation) {
+        // Ввод первого числа
+        cout << "Введите первое число: ";
+        while (!(cin >> num1)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ошибка! Введите число: ";
+        }
+
+        // Ввод операции
+        cout << "Введите операцию (+, -, *, /): ";
+        cin >> operation;
+        while (operation != '+' && operation != '-' && operation != '*' && operation != '/') {
+            cout << "Неверная операция! Введите +, -, * или /: ";
+            cin >> operation;
+        }
+
+        // Ввод второго числа
+        cout << "Введите второе число: ";
+        while (!(cin >> num2)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ошибка! Введите число: ";
+        }
+
+        // Вычисление и вывод результата
+        switch (operation) {
+            case '+':
+                cout << "Результат: " << num1 << " + " << num2 << " = " << num1 + num2 << endl;
+                break;
+            case '-':
+                cout << "Результат: " << num1 << " - " << num2 << " = " << num1 - num2 << endl;
+                break;
+            case '*':
+                cout << "Результат: " << num1 << " * " << num2 << " = " << num1 * num2 << endl;
+                break;
+            case '/':
+                if (num2 != 0) {
+                    cout << "Результат: " << num1 << " / " << num2 << " = " << num1 / num2 << endl;
+                } else {
+                    cout << "Ошибка! Деление на ноль невозможно." << endl;
+                }
+                break;
+        }
+
+        // Проверка на продолжение вычислений
+        char choice;
+        cout << "Хотите продолжить? (y/n): ";
+        cin >> choice;
+        continueCalculation = (choice == 'y' || choice == 'Y');
+
+        cout << endl;
+    }
+
+    cout << "Программа завершена. До свидания!" << endl;
+    return 0;
+}
